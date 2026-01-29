@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { getTranslations } from "next-intl/server";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -8,10 +8,14 @@ const geistSans = Geist({
   weight: ["300", "400", "500", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "Doodle chat",
-  description: "Doodle chat is a fun take home assignement.",
-};
+export async function generateMetadata() {
+  const t = await getTranslations("root");
+
+  return {
+    title: t("meta.title"),
+    description: t("meta.description"),
+  };
+}
 
 export default function RootLayout({
   children,
