@@ -1,7 +1,7 @@
 :root {
     /* Colors */
     --color-background: #ffffff;
-    --color-primary: #bd6653;
+    --color-primary: #f48972;
     --color-secondary: #3898d4;
     --color-secondary-dark: #34739d;
     --color-text: #464d48;
@@ -47,6 +47,9 @@
     --space-2xl: 40px;
     --space-3xl: 48px;
     --space-4xl: 60px;
+
+    /* Container */
+    --content-width: 980px;
 }
 
 html,
