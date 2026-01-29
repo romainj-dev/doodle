@@ -3,8 +3,8 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <main className={styles.main}>
+      <div className={styles.container}>
         <Image
           className={styles.logo}
           src="/next.svg"
@@ -60,7 +60,7 @@ export default function Home() {
             Documentation
           </a>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
