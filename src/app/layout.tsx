@@ -1,5 +1,6 @@
 import { Geist } from "next/font/google";
 import { getTranslations } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,8 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable}`}>{children}</body>
+    <html lang="en" className={geistSans.variable}>
+      <body>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      </body>
     </html>
   );
 }

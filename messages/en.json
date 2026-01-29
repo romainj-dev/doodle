@@ -4,5 +4,9 @@
       "title": "Doodle chat",
       "description": "Doodle chat is a fun take home assignement."
     }
+  },
+  "messages": {
+    "loadMore": "Load more",
+    "send": "Send"
   }
 }

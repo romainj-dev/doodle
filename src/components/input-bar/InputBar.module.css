@@ -1,0 +1,29 @@
+.container {
+    position: sticky;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--space-s) var(--space-m);
+    background: var(--color-secondary);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--color-gray-light);
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 100%;
+    max-width: var(--content-width);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: var(--space-s);
+}
+
+.inputContainer {
+    flex: 1;
+}
+
+.sendButton {
+    height: 100%;
+}
