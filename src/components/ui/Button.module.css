@@ -1,62 +1,62 @@
 .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-family: var(--font-family-base);
-    font-weight: var(--font-weight-medium);
-    border-radius: var(--radius-s);
-    transition: opacity 0.2s ease;
-    padding: var(--space-xs) var(--space-l);
-    font-size: var(--font-size-text-l);
-    line-height: var(--line-height-regular);
-    border: none;
-    outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-s);
+  transition: opacity 0.2s ease;
+  padding: var(--space-xs) var(--space-l);
+  font-size: var(--font-size-text-l);
+  line-height: var(--line-height-regular);
+  border: none;
+  outline: none;
 }
 
 .button:disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-contrast);
+  background-color: var(--color-primary);
+  color: var(--color-text-contrast);
 }
 
 .primary:hover:not(:disabled) {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .secondary {
-    background-color: var(--color-secondary);
-    color: var(--color-text-contrast);
+  background-color: var(--color-secondary);
+  color: var(--color-text-contrast);
 }
 
 .secondary:hover:not(:disabled) {
-    background-color: var(--color-secondary-dark);
+  background-color: var(--color-secondary-dark);
 }
 
 .outline {
-    background-color: transparent;
-    border: 1px solid var(--color-gray-light);
-    color: var(--color-text);
+  background-color: transparent;
+  border: 1px solid var(--color-gray-light);
+  color: var(--color-text);
 }
 
 .outline:hover:not(:disabled) {
-    border-color: var(--color-text);
+  border-color: var(--color-text);
 }
 
 .small {
-    padding: var(--space-2xs) var(--space-s);
-    font-size: var(--font-size-text-m);
+  padding: var(--space-2xs) var(--space-s);
+  font-size: var(--font-size-text-m);
 }
 
 .large {
-    padding: var(--space-s) var(--space-xl);
-    font-size: var(--font-size-title-s);
+  padding: var(--space-s) var(--space-xl);
+  font-size: var(--font-size-title-s);
 }
 
 .fullWidth {
-    width: 100%;
+  width: 100%;
 }
