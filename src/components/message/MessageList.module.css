@@ -1,31 +1,31 @@
 .container {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: var(--space-m);
-    padding: var(--space-m) 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  padding: var(--space-m) 0;
+  overflow-y: auto;
 }
 
 .loading {
-    display: flex;
-    justify-content: center;
-    padding: var(--space-s);
-    color: var(--color-text-gray);
-    font-size: var(--font-size-text-s);
+  display: flex;
+  justify-content: center;
+  padding: var(--space-s);
+  color: var(--color-text-gray);
+  font-size: var(--font-size-text-s);
 }
 
 .spinner {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--color-gray-light);
-    border-top-color: var(--color-primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-gray-light);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }

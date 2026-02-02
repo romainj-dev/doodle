@@ -1,7 +1,7 @@
 import React from "react";
-import { TextInput } from "../ui/TextInput";
 import styles from "./InputBar.module.css";
 import { Button } from "@/components/ui/Button";
+import { TextInput } from "@/components/ui/TextInput";
 import { useTranslations } from "next-intl";
 
 interface InputBarProps {
@@ -13,22 +13,19 @@ interface InputBarProps {
 
 export function InputBar({ value, onChange, onSend, disabled }: InputBarProps) {
   const t = useTranslations("messages");
-  // TODO replace by using a form and a submit button
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      onSend();
-    }
+
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSend();
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
+      <form className={styles.content} onSubmit={handleSubmit}>
         <TextInput
           id="message-input"
           value={value}
           onChange={onChange}
-          onKeyDown={handleKeyDown}
           placeholder="Type a message..."
           containerClassName={styles.inputContainer}
           disabled={disabled}
@@ -37,13 +34,13 @@ export function InputBar({ value, onChange, onSend, disabled }: InputBarProps) {
         />
         <Button
           className={styles.sendButton}
-          onClick={onSend}
+          type="submit"
           disabled={disabled || !value.trim()}
           aria-label="Send message"
         >
           {t("send")}
         </Button>
-      </div>
+      </form>
     </div>
   );
 }
