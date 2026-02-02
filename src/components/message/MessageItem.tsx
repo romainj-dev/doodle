@@ -19,15 +19,20 @@ function formatTimestamp(isoString: string): string {
 
 export interface MessageItemProps {
   item: Message;
+  "data-message-id"?: string;
 }
 
-export function MessageItem({ item }: MessageItemProps) {
+export function MessageItem({
+  item,
+  "data-message-id": dataMessageId,
+}: MessageItemProps) {
   const { author, message, createdAt } = item;
   const timestamp = formatTimestamp(createdAt);
   const isAuthor = author === DEFAULT_AUTHOR;
   return (
     <div
       className={`${styles.container} ${isAuthor ? styles.primary : styles.secondary}`}
+      data-message-id={dataMessageId}
     >
       {author && <div className={styles.author}>{author}</div>}
       <div className={styles.text}>{decodeHtmlEntities(message)}</div>
