@@ -12,16 +12,22 @@ import type {
 } from "@/lib/types/api";
 import type { Message } from "@/lib/types/message";
 
-const PAGE_SIZE = 10;
+export const PAGE_SIZE = 10;
 
+type UseInfiniteMessagesParams = {
+  initialTimestamp: string;
+};
 /**
  * Hook for infinite scrolling messages
  * Loads messages in pages, with newest at the bottom
+ * @param initialTimestamp - The timestamp to use for the first page (must match server prefetch)
  */
-export function useInfiniteMessages() {
+export function useInfiniteMessages({
+  initialTimestamp,
+}: UseInfiniteMessagesParams) {
   return useInfiniteQuery({
     queryKey: queryKeys.messages.list(),
-    queryFn: async ({ pageParam }: { pageParam: string | undefined }) => {
+    queryFn: async ({ pageParam }: { pageParam: string }) => {
       return fetcher<GetMessagesResponse>({
         method: "GET",
         path: "/api/messages",
@@ -31,13 +37,13 @@ export function useInfiniteMessages() {
         },
       });
     },
-    initialPageParam: new Date().toISOString(),
-    getNextPageParam: (lastPageTSQ: GetMessagesResponse) => {
+    initialPageParam: initialTimestamp,
+    getNextPageParam: (lastPage: GetMessagesResponse) => {
       // If we got fewer messages than requested, there are no more pages
-      if (lastPageTSQ.messages.length < PAGE_SIZE) {
+      if (lastPage.messages.length < PAGE_SIZE) {
         return undefined;
       }
-      const oldestMessage = lastPageTSQ.messages[0];
+      const oldestMessage = lastPage.messages[0];
       return oldestMessage?.createdAt;
     },
     staleTime: 30 * 1000, // 30 seconds
@@ -100,8 +106,6 @@ export function usePostMessage() {
               });
             }
 
-            console.log("old.pages: ", old.pages);
-            console.log("newPages: ", newPages);
             return {
               ...old,
               pages: newPages,

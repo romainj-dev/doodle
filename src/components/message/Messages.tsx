@@ -24,7 +24,11 @@ function MessagesLoading() {
   );
 }
 
-export function Messages() {
+interface MessagesProps {
+  initialTimestamp: string;
+}
+
+export function Messages({ initialTimestamp }: MessagesProps) {
   const {
     data,
     isLoading,
@@ -33,7 +37,7 @@ export function Messages() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteMessages();
+  } = useInfiniteMessages({ initialTimestamp });
 
   const messages = useMemo(() => {
     return (

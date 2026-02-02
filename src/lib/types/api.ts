@@ -38,3 +38,5 @@ export type GetMessagesParams = {
 export type GetMessagesResponse = {
   messages: Message[];
 };
+
+export type GetMessagesExternalApiResponse = Message[];
