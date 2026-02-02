@@ -10,7 +10,7 @@
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 0 var(--space-m);
+  padding: 0 var(--space-l);
   display: flex;
   flex-direction: column;
 
