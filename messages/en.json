@@ -6,7 +6,11 @@
     }
   },
   "messages": {
-    "loadMore": "Load more",
-    "send": "Send"
+    "placeholder": "Type a message...",
+    "loading": "Loading messages...",
+    "error": "Error loading messages: {error}",
+    "loadMore": "Loading more messages",
+    "send": "Send",
+    "messageInput": "Message input"
   }
 }

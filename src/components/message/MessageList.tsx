@@ -1,8 +1,11 @@
+"use client";
+
 import { useRef, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { MessageItem } from "./MessageItem";
 import styles from "./MessageList.module.css";
 import type { Message } from "@/lib/types/message";
+import { useTranslations } from "next-intl";
 
 interface MessageListProps {
   messages: Message[];
@@ -17,6 +20,7 @@ export function MessageList({
   hasNextPage = false,
   onLoadMore,
 }: MessageListProps) {
+  const t = useTranslations("messages");
   const listRef = useRef<HTMLDivElement>(null);
   const hasInitialScrollRef = useRef(false);
   const { ref: inViewRef, inView } = useInView({
@@ -49,7 +53,7 @@ export function MessageList({
           <div
             className={styles.spinner}
             role="status"
-            aria-label="Loading more messages"
+            aria-label={t("loadMore")}
           />
         </div>
       )}

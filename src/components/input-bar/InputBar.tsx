@@ -1,22 +1,38 @@
-import React from "react";
+"use client";
+
+import React, { useState, type SubmitEvent } from "react";
 import styles from "./InputBar.module.css";
 import { Button } from "@/components/ui/Button";
 import { TextInput } from "@/components/ui/TextInput";
 import { useTranslations } from "next-intl";
+import { usePostMessage } from "@/lib/hooks/useMessages";
+import { encodeHtmlEntities } from "@/lib/utils/htmlEntities";
+import { DEFAULT_AUTHOR } from "@/lib/author/constants";
 
-interface InputBarProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSend: () => void;
-  disabled?: boolean;
-}
+export function InputBar() {
+  const [inputValue, setInputValue] = useState("");
+  const value = inputValue.trim();
 
-export function InputBar({ value, onChange, onSend, disabled }: InputBarProps) {
   const t = useTranslations("messages");
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const { mutate: postMessage, isPending } = usePostMessage();
+
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSend();
+
+    if (!value) return;
+
+    postMessage(
+      {
+        message: encodeHtmlEntities(value),
+        author: DEFAULT_AUTHOR,
+      },
+      {
+        onSuccess: () => {
+          setInputValue("");
+        },
+      }
+    );
   };
 
   return (
@@ -25,18 +41,18 @@ export function InputBar({ value, onChange, onSend, disabled }: InputBarProps) {
         <TextInput
           id="message-input"
           value={value}
-          onChange={onChange}
-          placeholder="Type a message..."
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder={t("placeholder")}
           containerClassName={styles.inputContainer}
-          disabled={disabled}
+          disabled={isPending}
           autoComplete="off"
-          aria-label="Message input"
+          aria-label={t("messageInput")}
         />
         <Button
           className={styles.sendButton}
           type="submit"
-          disabled={disabled || !value.trim()}
-          aria-label="Send message"
+          disabled={isPending || !value}
+          aria-label={t("send")}
         >
           {t("send")}
         </Button>
@@ -44,5 +60,3 @@ export function InputBar({ value, onChange, onSend, disabled }: InputBarProps) {
     </div>
   );
 }
-
-InputBar.displayName = "InputBar";
